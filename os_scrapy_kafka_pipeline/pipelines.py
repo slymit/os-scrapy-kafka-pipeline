@@ -77,7 +77,6 @@ class KafkaPipeline(object):
         self.logger = logging.getLogger(self.__class__.__name__)
         crawler.signals.connect(self.spider_closed, signals.spider_closed)
         self.exporter = TextDictKeyPythonItemExporter(
-            binary=False,
             ensure_base64=settings.getbool(KAFKA_VALUE_ENSURE_BASE64, False),
         )
         self.encoder = ScrapyJSNONBase64Encoder()

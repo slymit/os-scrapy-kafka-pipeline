@@ -111,13 +111,10 @@ class TextDictKeyPythonItemExporter(PythonItemExporter):
                     k = pre_join(pre, key)
                     if k in field_filter:
                         continue
-            key = to_bytes(key) if self.binary else key
             yield key, self._serialize_value(value, pre=pre, field_filter=field_filter)
 
     def export_item(self, item, pre=None, field_filter=None):
         result = dict(
             self._get_serialized_fields(item, pre=pre, field_filter=field_filter)
         )
-        if self.binary:
-            result = dict(self._serialize_item(result))
         return result
